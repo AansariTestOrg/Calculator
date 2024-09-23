@@ -1,6 +1,9 @@
 # This config was automatically generated from your source code
 # Stacks detected: deps:java:.,tool:gradle:
 version: 2.1
+orbs:
+  codecov: codecov/codecov@4.0.1
+
 jobs:
   test-java:
     docker:
@@ -24,6 +27,18 @@ jobs:
             - ~/.gradle/caches
       - store_artifacts:
           path: build/reports
+
+  upload-to-codecov:
+    docker:
+      - image: cimg/openjdk:17.0
+    steps:
+      - checkout
+      - run:
+          name: Kover XML
+          command: ./gradlew koverXmlReport
+      - codecov/upload:
+          file: build/reports/kover/report.xml
+
   deploy:
     # This is an example deploy job, not actually used by the workflow
     docker:
@@ -33,10 +48,12 @@ jobs:
       - run:
           name: deploy
           command: '#e.g. ./deploy.sh'
+
 workflows:
   build-and-test:
     jobs:
       - test-java
+      - upload-to-codecov
     # - deploy:
     #     requires:
     #       - test-java
