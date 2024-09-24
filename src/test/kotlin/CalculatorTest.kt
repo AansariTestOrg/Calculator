@@ -2,6 +2,7 @@ import org.aansari.Calculator
 import org.aansari.Operator
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 class CalculatorTest {
     private val testCalculator: Calculator = Calculator()
@@ -29,7 +30,7 @@ class CalculatorTest {
     }
 
     @Test
-    fun `Multiplication operation successfully mutiplies two numbers`() {
+    fun `Multiplication operation successfully multiplies two numbers`() {
         val operand1 = 3.0
         val operand2 = 2.0
         val expectedResult = 6.0
@@ -37,6 +38,16 @@ class CalculatorTest {
         val actualResult = testCalculator.calculate(operand1, operand2, Operator.MULTIPLICATION)
 
         assertEquals(expectedResult, actualResult)
+    }
+
+    @Test
+    fun `Division operation fails if attempting to divide by zero`() {
+        val operand1 = 3.0
+        val operand2 = 0.0
+
+        assertFailsWith<ArithmeticException> {
+            testCalculator.calculate(operand1, operand2, Operator.DIVISION)
+        }
     }
 
     @Test
