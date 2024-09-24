@@ -18,12 +18,34 @@ class CalculatorTest {
     }
 
     @Test
-    fun `Subtraction operation successfully subtracts second number from first`() {
+    fun `Subtraction operation successfully subtracts second number from the first`() {
         val operand1 = 3.0
         val operand2 = 2.0
         val expectedResult = 1.0
 
         val actualResult = testCalculator.calculate(operand1, operand2, Operator.SUBTRACTION)
+
+        assertEquals(expectedResult, actualResult)
+    }
+
+    @Test
+    fun `Multiplication operation successfully mutiplies two numbers`() {
+        val operand1 = 3.0
+        val operand2 = 2.0
+        val expectedResult = 6.0
+
+        val actualResult = testCalculator.calculate(operand1, operand2, Operator.MULTIPLICATION)
+
+        assertEquals(expectedResult, actualResult)
+    }
+
+    @Test
+    fun `Division operation successfully divides first number by the second`() {
+        val operand1 = 3.0
+        val operand2 = 2.0
+        val expectedResult = 1.5
+
+        val actualResult = testCalculator.calculate(operand1, operand2, Operator.DIVISION)
 
         assertEquals(expectedResult, actualResult)
     }
