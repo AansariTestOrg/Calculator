@@ -2,6 +2,7 @@ package org.aansari
 
 import org.aansari.operation.Addition
 import org.aansari.operation.Division
+import org.aansari.operation.Exponentiation
 import org.aansari.operation.Multiplication
 import org.aansari.operation.Subtraction
 
@@ -28,6 +29,10 @@ class Calculator() {
                 val division = Division()
                 return division.performOperation(operand1, operand2)
             }
+            Operator.EXPONENTIATION -> {
+                val exponentiation = Exponentiation()
+                return exponentiation.performOperation(operand1, operand2)
+            }
         }
     }
 }
@@ -36,5 +41,6 @@ enum class Operator {
     ADDITION,
     SUBTRACTION,
     MULTIPLICATION,
-    DIVISION
+    DIVISION,
+    EXPONENTIATION
 }
