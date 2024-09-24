@@ -1,0 +1,9 @@
+coverage:
+  status:
+    project: # Overall project coverage (i.e. absolute coverage) config
+      default:   # default is the status check's name, not default settings
+        target: 80
+        threshold: 2
+    patch:
+      target: 95
+      threshold: 0
