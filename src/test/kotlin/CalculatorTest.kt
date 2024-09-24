@@ -60,4 +60,15 @@ class CalculatorTest {
 
         assertEquals(expectedResult, actualResult)
     }
+
+    @Test
+    fun `Exponentiation operation successfully raises first number to the (second number)th power`() {
+        val operand1 = 5.0
+        val operand2 = 3.0
+        val expectedResult = 125.0
+
+        val actualResult = testCalculator.calculate(operand1, operand2, Operator.EXPONENTIATION)
+
+        assertEquals(expectedResult, actualResult)
+    }
 }
